@@ -12,6 +12,7 @@ const courseSchema = new Schema(
     createdAt: {
       type: Date,
       default: Date.now(),
+      // use getter method
     },
     username: {
       type: String,

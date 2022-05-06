@@ -1,5 +1,5 @@
 const connection = require('../config/connection');
-const { Course, Student } = require('../models');
+const { Thought, User } = require('../models');
 const { getRandomName, getRandomAssignments } = require('./data');
 
 connection.on('error', (err) => err);
