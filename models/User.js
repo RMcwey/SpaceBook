@@ -17,11 +17,6 @@ const userSchema = new Schema(
       max_length: 50,
       match: /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/,
     },
-    github: {
-      type: String,
-      required: true,
-      max_length: 50,
-    },
     thoughts: [thoughtsSchema],
     friends: [userSchema],
   },
