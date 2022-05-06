@@ -1,4 +1,6 @@
 const { Schema, model } = require('mongoose');
+const userSchema = require('./User');
+const reactionSchema = require('./Reaction');
 
 // Schema to create a course model
 const courseSchema = new Schema(
@@ -17,6 +19,7 @@ const courseSchema = new Schema(
     username: {
       type: String,
       required: true,
+      ref: 'User',
     },
     reactions: [
       {
@@ -28,10 +31,35 @@ const courseSchema = new Schema(
   {
     toJSON: {
       virtuals: true,
+      getters: true,
     },
     // id: false,
   }
 );
+
+reactionSchema
+  .virtuals('reactionCount')
+  .get(function () {
+    return `${this.length}`
+  })
+  .set(function (v) {
+    this.set(v)
+  })
+
+  // userSchema
+  // .virtual('fullName')
+  // // Getter
+  // .get(function () {
+  //   return `${this.first} ${this.last}`;
+  // })
+  // // Setter to set the first and last name
+  // .set(function (v) {
+  //   const first = v.split(' ')[0];
+  //   const last = v.split(' ')[1];
+  //   this.set({ first, last });
+  // });
+
+
 
 const Thought = model('thought', thoughtSchema);
 
