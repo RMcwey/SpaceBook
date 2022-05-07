@@ -8,7 +8,7 @@
 * [Installation](#installation)
 * [Usage](#usage)
 * [Credits](#credits)
-* [Live URL](#live-url)
+* [Video Walkthrough URL](#video-walkthrough-url)
 * [Questions](#questions)
 * [License](#license)
     
@@ -21,15 +21,19 @@
 - **What did you learn?** I leanred how to create the back-end for a start-up social media site. I learned how to implement MongoDB, Mongoose and how to use moment.js to format timestamps created in databases.
 
 ## Installation
-
+1. After cloning repository, open terminal and enter `npm i`.
+2. Then enter `npm run seed`
+3. Then enter `npm start`
+4. Now the application is running. 
 
 
 ## Usage
 
-Provide instructions and examples for use. Include screenshots as needed.
 
-## Live URL
 
+## Video Walkthrough URL
+
+https://drive.google.com/file/d/1T2N9JEP6vMTxDNVee96W7po93z4j6B6Q/view?usp=sharing
 
 ## Credits
 Ross McWey
