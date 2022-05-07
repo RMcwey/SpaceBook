@@ -1,6 +1,6 @@
 const { Schema, model } = require('mongoose');
 const userSchema = require('./User');
-const reactionSchema = require('./Reaction');
+const Reaction = require('./Reaction');
 
 // Schema to create a course model
 const thoughtSchema = new Schema(
@@ -21,12 +21,7 @@ const thoughtSchema = new Schema(
       required: true,
       ref: 'User',
     },
-    reactions: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: 'Reaction',
-      },
-    ],
+    reactions: [Reaction],
   },
   {
     toJSON: {
@@ -37,27 +32,11 @@ const thoughtSchema = new Schema(
   }
 );
 
-reactionSchema
+thoughtSchema
   .virtual('reactionCount')
   .get(function () {
     return `${this.reactions.length}`
   })
- 
-
-  // userSchema
-  // .virtual('fullName')
-  // // Getter
-  // .get(function () {
-  //   return `${this.first} ${this.last}`;
-  // })
-  // // Setter to set the first and last name
-  // .set(function (v) {
-  //   const first = v.split(' ')[0];
-  //   const last = v.split(' ')[1];
-  //   this.set({ first, last });
-  // });
-
-
 
 const Thought = model('thought', thoughtSchema);
 

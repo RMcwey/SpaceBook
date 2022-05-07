@@ -18,17 +18,7 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
-  // Create a thought NEEDS TO BE UPDATED
-  // createThought(req, res) {
-  //   Thought.create(req.body)
-  //   // { $push: { friends: { friendsId: req.params.friendsId } } }
-  //     .then((thought) => res.json(thought))
-  //     .catch((err) => {
-  //       console.log(err);
-  //       return res.status(500).json(err);
-  //     });
-  // },
-
+// Create thought
   createThought(req, res) {
     Thought.create(req.body)
       .then((thought) => {
@@ -77,5 +67,31 @@ module.exports = {
       .catch((err) => res.status(500).json(err));
   },
   // Post a reaction to a thought
+  addReaction(req, res) {
+    Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      { $addToSet: { reactions: req.body } },
+      { runValidators: true, new: true }
+    )
+      .then((thought) =>
+        !thought
+          ? res.status(404).json({ message: 'No thought with this id!' })
+          : res.json(thought)
+      )
+      .catch((err) => res.status(500).json(err));
+  },
+  removeReaction(req, res) {
+    Thought.findOneAndUpdate(
+      { _id: req.params.thoughtId },
+      { $pull: { reactions: { _id: req.params.reactionId } } },
+      { runValidators: true, new: true }
+    )
+      .then((thought) =>
+        !thought
+          ? res.status(404).json({ message: 'No thought with this id!' })
+          : res.json(thought)
+      )
+      .catch((err) => res.status(500).json(err));
+  },
 
 };
