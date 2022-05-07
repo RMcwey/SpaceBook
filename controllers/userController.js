@@ -62,7 +62,22 @@ module.exports = {
       .then((user) => res.json(user))
       .catch((err) => res.status(500).json(err));
   },
-  // Delete a student and remove them from the course Delete User and remove their thoughts
+  // update user by id
+  updateUser(req, res) {
+    User.findOneAndUpdate(
+      { _id: req.params.userId },
+      { $set: req.body },
+      { runValidators: true, new: true }
+    )
+      .then((user) =>
+        !user
+          ? res.status(404).json({ message: 'No user with this id!' })
+          : res.json(user)
+      )
+      .catch((err) => res.status(500).json(err));
+  },
+
+  // Delete a user and remove their thoughts
   deleteUser(req, res) {
     User.findOneAndRemove({ _id: req.params.userId })
       .then((user) =>
@@ -87,11 +102,11 @@ module.exports = {
       });
   },
 
-  // Add an assignment to a student
+  // Add a friend to a user
   addFriend(req, res) {
     console.log('You are adding a friend');
     console.log(req.body);
-    Student.findOneAndUpdate(
+    User.findOneAndUpdate(
       { _id: req.params.userId },
       { $addToSet: { friends: req.body } },
       { runValidators: true, new: true }
@@ -105,11 +120,11 @@ module.exports = {
       )
       .catch((err) => res.status(500).json(err));
   },
-  // Remove assignment from a student
+  // Remove friend from a user
   removeFriend(req, res) {
     User.findOneAndUpdate(
       { _id: req.params.userId },
-      { $pull: { friends: { friendsId: req.params.friendsId } } },
+      { $pull: { friends: req.params.friendId } },
       { runValidators: true, new: true }
     )
       .then((user) =>

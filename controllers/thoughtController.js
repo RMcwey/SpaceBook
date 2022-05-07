@@ -10,7 +10,7 @@ module.exports = {
   // Get a course
   getSingleThought(req, res) {
     Thought.findOne({ _id: req.params.thoughtId })
-      .select('-__v')
+      // .select('-__v')
       .then((thought) =>
         !thought
           ? res.status(404).json({ message: 'No thought with that ID' })
@@ -34,8 +34,8 @@ module.exports = {
       .then((thought) => {
         return User.findOneAndUpdate(
           // may be req.body._id
-          { _id: req.body.UserId },
-          { $push: { thoughts: thought._id } },
+          { _id: req.body.userId },
+          { $addToSet: { thoughts: thought._id } },
           { new: true }
         );
       })
@@ -71,8 +71,8 @@ module.exports = {
     )
       .then((thought) =>
         !thought
-          ? res.status(404).json({ message: 'No course with this id!' })
-          : res.json(course)
+          ? res.status(404).json({ message: 'No thought with this id!' })
+          : res.json(thought)
       )
       .catch((err) => res.status(500).json(err));
   },
