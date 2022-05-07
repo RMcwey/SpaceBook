@@ -19,12 +19,12 @@ router
   .put(updateThought)
   .delete(deleteThought);
 
-// 
+// api/thoughts/:thoughtId/reactions
 router
   .route('/:thoughtId/reactions')
   .post(addReaction);
 
-// /api/students/:studentId/assignments/:assignmentId
+// /api/thoughts/:thoughtId/reactions/:reactionId
 router
   .route('/:thoughtId/reactions/:reactionId')
   .delete(removeReaction);
