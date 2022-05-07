@@ -67,9 +67,9 @@ module.exports = {
       .then((user) =>
         !user
           ? res.status(404).json({ message: 'No such user exists' })
-          : Thought.findOneAndUpdate(
-              { username: req.username },
-              { $pull: { username: req.username } },
+          : Thought.deleteMany(
+              { username: user.username },
+              // { $pull: { username: req.body.username } },
               { new: true }
             )
       )
