@@ -29,6 +29,9 @@
 
 ## Usage
 
+![image](https://user-images.githubusercontent.com/95650769/167270190-ff219852-5373-4dec-b15d-ff4aea4ecb33.png)
+
+![image](https://user-images.githubusercontent.com/95650769/167270228-20a9241b-9763-46ea-8014-75137955388c.png)
 
 
 ## Video Walkthrough URL
