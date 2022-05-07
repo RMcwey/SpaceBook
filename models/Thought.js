@@ -3,7 +3,7 @@ const userSchema = require('./User');
 const reactionSchema = require('./Reaction');
 
 // Schema to create a course model
-const courseSchema = new Schema(
+const thoughtSchema = new Schema(
   {
     thoughtText: {
       type: String,
@@ -33,18 +33,16 @@ const courseSchema = new Schema(
       virtuals: true,
       getters: true,
     },
-    // id: false,
+    id: false,
   }
 );
 
 reactionSchema
   .virtuals('reactionCount')
   .get(function () {
-    return `${this.length}`
+    return `${this.reactions.length}`
   })
-  .set(function (v) {
-    this.set(v)
-  })
+ 
 
   // userSchema
   // .virtual('fullName')
